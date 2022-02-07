@@ -6,7 +6,7 @@ public class Song
 {
     private String songName;
     private String artist;
-    private int length;
+    private int length; //In seconds
     private String genre;
     
     public Song()
@@ -23,4 +23,20 @@ public class Song
         length = l;
         genre = g;
     }
+    
+    public String getName()
+    {
+        return songName;
+    }
+    public String getArtist()
+    {
+        return artist;
+    }
+    public String getGenre(){
+        return genre;
+    }
+    public int getLength(){
+        return length;
+    }
 }
+
