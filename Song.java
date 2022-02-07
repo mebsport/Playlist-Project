@@ -32,11 +32,20 @@ public class Song
     {
         return artist;
     }
-    public String getGenre(){
+    public String getGenre()
+    {
         return genre;
     }
-    public int getLength(){
+    public int getLength()
+    {
         return length;
+    }
+    
+    public String getFullTime()
+    {
+        int minutes = length/60;
+        int seconds = length%60;
+        return minutes + ":" + seconds;
     }
 }
 
