@@ -28,9 +28,9 @@ public class Playlist
     {
         playlist.add(song);
     }
-    public void removeSong()
+    public void removeSong(Song song)
     {
-        
+        playlist.remove(playlist.indexOf(song));
     }
     public void shuffle(){
         
@@ -38,6 +38,7 @@ public class Playlist
     public String toString(){
         String details = "";
         //return playlist name + number or songs + length
+        details = listName + " | " + getNumSongs() + " | " + getFullLength();
         return details;
     }
     public void updateCurrent(int songIndex){
@@ -62,11 +63,25 @@ public class Playlist
     }
     public int getNumSongs()
     {
-        
+        playlist.trimToSize();
+        return playlist.size();
     }
     public int getLength()
     {
         
+    }
+    public String getFullLength()
+    {
+        int minutes = getLength()/60;
+        int seconds = getLength()%60;
+        if(minutes >= 60)
+        {
+            int hours = minutes/60;
+            minutes = minutes - (hours * 60);
+            minutes ++; //round up for loss of seconds
+            return hours + " Hours, " + minutes + " Minutes." ;
+        }
+        return minutes + " Minutes, " + seconds + " Seconds." ;
     }
     public void sort()
     {
