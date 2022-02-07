@@ -47,5 +47,10 @@ public class Song
         int seconds = length%60;
         return minutes + ":" + seconds;
     }
+    
+    public String toString()
+    {
+        return songName + " - " + artist + " | " + getFullTime();
+    }
 }
 
