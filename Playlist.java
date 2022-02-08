@@ -53,13 +53,27 @@ public class Playlist
     {
         return playlist.get(currentSongIndex +1).toString(); 
     }
-    public Song findFromGenre()
+    public Song findFromGenre(String genre)
     {
-    
+        for(int i = 0; i < playlist.size(); i++)
+        {
+            if(playlist.get(i).getGenre() == genre)
+            {
+                return playlist.get(i);
+            }
+        }
+        return null;
     }
-    public Song findFromArtist()
+    public Song findFromArtist(String artist)
     {
-    
+        for(int i = 0; i>playlist.size(); i++)
+        {
+            if(playlist.get(i).getArtist().equals(artist))
+            {
+                return playlist.get(i);
+            }
+        }
+        return null;
     }
     public int getNumSongs()
     {
@@ -68,7 +82,12 @@ public class Playlist
     }
     public int getLength()
     {
-        
+        int time = 0;
+        for(int i = 0; i>playlist.size(); i++)
+        {
+            time += playlist.get(i).getLength();
+        }
+        return time;
     }
     public String getFullLength()
     {
@@ -85,7 +104,7 @@ public class Playlist
     }
     public void sort()
     {
-    
+        Collections.sort   
     }
 }
 
