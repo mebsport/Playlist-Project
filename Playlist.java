@@ -1,8 +1,5 @@
 import java.util.*;
-/**
- * Marcelus Brown
- * 2/7/21
- */
+//Marcelus Brown
 public class Playlist
 {
     private ArrayList<Song> playlist = new ArrayList<Song>();
@@ -32,8 +29,16 @@ public class Playlist
     {
         playlist.remove(playlist.indexOf(song));
     }
-    public void shuffle(){
-        
+    public void shuffle()
+    {
+        for(int i = 0; i < playlist.size(); i++)
+        {
+            int randomNum = (int) (Math.random() * playlist.size());
+
+            Song current = playlist.get(i);
+            Song random = playlist.set(randomNum, current);
+            playlist.set(i, random);
+        }
     }
     public String toString(){
         String details = "";
@@ -103,8 +108,26 @@ public class Playlist
         return minutes + " Minutes, " + seconds + " Seconds." ;
     }
     public void sort()
-    {
-        Collections.sort   
+    {    
     }
+    public void print()
+    {
+        System.out.println("Songs in " + listName + ":");
+        System.out.println(playlist);
+    }
+
+    //change current song
+    public void nextSong()
+    {
+
+}
+public void prevSong()
+    {
+
+    }
+public void whatSong()
+        {
+
+}
 }
 

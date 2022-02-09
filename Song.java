@@ -1,7 +1,4 @@
-/**
- * Marcelus Brown
- * 2/7/21
- */
+//Marcelus Brown
 public class Song
 {
     private String songName;
@@ -16,12 +13,12 @@ public class Song
         length = 0;
         genre = "";
     }
-    public Song(String n, String a, int l, String g)
+    public Song(String name, String artist, int length, String genre)
     {
-        songName = n;
-        artist = a;
-        length = l;
-        genre = g;
+        this.songName = name;
+        this.artist = artist;
+        this.length = length;
+        this.genre = genre;
     }
     
     public String getName()
