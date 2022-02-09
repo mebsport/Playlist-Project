@@ -25,9 +25,17 @@ public class Playlist
     {
         playlist.add(song);
     }
-    public void removeSong(Song song)
+    public void removeSong(String song)
     {
-        playlist.remove(playlist.indexOf(song));
+        for(int i = 0; i < playlist.size(); i++)
+        {
+            if (playlist.get(i).getName().toLowerCase(Locale.ROOT).equals(song.toLowerCase(Locale.ROOT)))//look for matching song converts to lowercase so it's not picky
+            {
+                System.out.println(playlist.get(i).toString() + " was removed from your playlist");
+                playlist.remove(i);
+                break;
+            }
+        }
     }
     public void shuffle()
     {
@@ -43,7 +51,7 @@ public class Playlist
     public String toString(){
         String details = "";
         //return playlist name + number or songs + length
-        details = listName + " | " + getNumSongs() + " | " + getFullLength();
+        details = listName + " | " + getNumSongs() + " Songs | " + getFullLength();
         return details;
     }
     public void updateCurrent(int songIndex){
@@ -54,15 +62,12 @@ public class Playlist
     {
         return currentSong.toString();        
     }
-    public String getNextSongInfo()
-    {
-        return playlist.get(currentSongIndex +1).toString(); 
-    }
+
     public Song findFromGenre(String genre)
     {
         for(int i = 0; i < playlist.size(); i++)
         {
-            if(playlist.get(i).getGenre() == genre)
+            if(playlist.get(i).getGenre().toLowerCase(Locale.ROOT).equals(genre.toLowerCase(Locale.ROOT)))
             {
                 return playlist.get(i);
             }
@@ -71,9 +76,9 @@ public class Playlist
     }
     public Song findFromArtist(String artist)
     {
-        for(int i = 0; i>playlist.size(); i++)
+        for(int i = 0; i<playlist.size(); i++)
         {
-            if(playlist.get(i).getArtist().equals(artist))
+            if(playlist.get(i).getArtist().toLowerCase(Locale.ROOT).equals(artist.toLowerCase(Locale.ROOT)))
             {
                 return playlist.get(i);
             }
@@ -88,7 +93,7 @@ public class Playlist
     public int getLength()
     {
         int time = 0;
-        for(int i = 0; i>playlist.size(); i++)
+        for(int i = 0; i<playlist.size(); i++)
         {
             time += playlist.get(i).getLength();
         }
@@ -136,6 +141,14 @@ public class Playlist
         System.out.print("Now Playing: ");
         System.out.println(getCurrentSongInfo());
     }
+    public String getNextSongInfo()
+    {
+        if(currentSongIndex + 1 > playlist.size())
+        {
+            return playlist.get(currentSongIndex +1).toString();
+        }
+        return("end of list");
+    }
 
     //start and restart
     public void start()
@@ -174,6 +187,40 @@ public class Playlist
             }
         }
     }
+    public void sortByArtist()
+    {
+        ArrayList<String> songArtists = new ArrayList<String>();//list of strings for name of songs
 
+        for(int i = 0; i < playlist.size(); i++)
+        {
+            songArtists.add(playlist.get(i).getArtist());//get the names of each song and add it to the array list
+        }
+
+        Collections.sort(songArtists);//sort songs by name
+
+        for(int i = 0; i < playlist.size(); i++)
+        {
+            if (!playlist.get(i).getArtist().equals(songArtists.get(i)))//sync the playlist with the sorted names so it's in order
+            {
+                playlist.add(playlist.get(i));
+                playlist.remove(i);
+                i--;
+            }
+        }
+    }
+
+    //remove all by artist
+    public void removeAllByArtist(String artist)
+    {
+        for(int i = 0; i < playlist.size(); i++)
+        {
+            if (playlist.get(i).getArtist().toLowerCase(Locale.ROOT).equals(artist.toLowerCase(Locale.ROOT)))
+            {
+                System.out.println(playlist.get(i).toString() + " was removed from your playlist");
+                playlist.remove(i);
+                i--;
+            }
+        }
+    }
 }
 
