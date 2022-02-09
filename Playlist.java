@@ -5,7 +5,7 @@ public class Playlist
     private ArrayList<Song> playlist = new ArrayList<Song>();
     private String listName;
     private Song currentSong;
-    private int currentSongIndex;
+    private int currentSongIndex =-1;
     
     public Playlist()
     {
@@ -20,7 +20,7 @@ public class Playlist
         listName = name;
         playlist.add(firstSong);
     }
-    
+
     public void addSong(Song song)
     {
         playlist.add(song);
@@ -107,9 +107,7 @@ public class Playlist
         }
         return minutes + " Minutes, " + seconds + " Seconds." ;
     }
-    public void sort()
-    {    
-    }
+
     public void print()
     {
         System.out.println("Songs in " + listName + ":");
@@ -119,15 +117,63 @@ public class Playlist
     //change current song
     public void nextSong()
     {
-
-}
-public void prevSong()
-    {
-
-    }
-public void whatSong()
+        if(currentSongIndex + 1 <= playlist.size())
         {
+            updateCurrent(currentSongIndex +1);
+            nowPlaying();
+        } else{ System.out.println("You are at the end of the playlist");}
+    }
+    public void prevSong()
+    {
+        if(currentSongIndex- 1 >= 0)
+        {
+            updateCurrent(currentSongIndex -1);
+            nowPlaying();
+        }else{System.out.println("You are at the begining of the playlist");}
+    }
+    public void nowPlaying()
+    {
+        System.out.print("Now Playing: ");
+        System.out.println(getCurrentSongInfo());
+    }
 
-}
+    //start and restart
+    public void start()
+    {
+        if(currentSongIndex == -1)
+        {
+            updateCurrent(0);
+        }
+        nowPlaying();
+    }
+    public void restart()
+    {
+        updateCurrent(0);
+        nowPlaying();
+    }
+
+    //sorting
+    public void sort()
+    {
+        ArrayList<String> songNames = new ArrayList<String>();//list of strings for name of songs
+
+        for(int i = 0; i < playlist.size(); i++)
+        {
+            songNames.add(playlist.get(i).getName());//get the names of each song and add it to the array list
+        }
+
+        Collections.sort(songNames);//sort songs by name
+
+        for(int i = 0; i < playlist.size(); i++)
+        {
+            if (!playlist.get(i).getName().equals(songNames.get(i)))//sync the playlist with the sorted names so it's in order
+            {
+                playlist.add(playlist.get(i));
+                playlist.remove(i);
+                i--;
+            }
+        }
+    }
+
 }
 
