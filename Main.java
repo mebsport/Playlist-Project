@@ -1,4 +1,6 @@
 import java.util.*;
+//Marcelus Brown
+//:)
 public class Main {
     public static void main(String[] args) {
         Playlist playlist = new Playlist("super duper amazing playlist");
@@ -65,5 +67,13 @@ public class Main {
         System.out.println(playlist.findFromArtist("King Nathan").toString());
         System.out.println("There are " + playlist.getSize() + " songs in your playlist.");
         System.out.println("Your playlist is " +  playlist.getFullLength() + "long.");
+        playlist.shuffle();
+        playlist.sortByArtist();
+        System.out.println("playlist sorted by artist name a-z: " + playlist.getPlaylist());
+        playlist.restart();
+        System.out.println("the name of this playlist is" + playlist.getListName());
+        playlist.updateCurrent(5);
+        playlist.updateCurrent("Headlines");
+        System.out.println("Testing Done :)");
     }
 }
