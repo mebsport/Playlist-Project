@@ -114,7 +114,7 @@ public class Playlist
             int hours = minutes/60;
             minutes = minutes - (hours * 60);
             minutes ++; //round up for loss of seconds
-            return hours + " Hours, " + minutes + " Minutes." ;
+            return hours + " Hours, " + minutes + " Minutes" ;
         }
         return minutes + " Minutes, " + seconds + " Seconds" ;
     }
