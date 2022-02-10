@@ -43,6 +43,10 @@ public class Song
     {
         int minutes = length/60;
         int seconds = length%60;
+        if(seconds < 10)
+        {
+            return minutes + ":" + "0" + seconds;
+        }
         return minutes + ":" + seconds;
     }
     
