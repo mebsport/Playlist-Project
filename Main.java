@@ -63,5 +63,7 @@ public class Main {
         playlist.restart();
         System.out.print("Nathan has one song in this playlist: ");
         System.out.println(playlist.findFromArtist("King Nathan").toString());
+        System.out.println("There are " + playlist.getSize() + " songs in your playlist.");
+        System.out.println("Your playlist is " +  playlist.getFullLength() + "long.");
     }
 }

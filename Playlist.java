@@ -51,7 +51,7 @@ public class Playlist
     public String toString(){
         String details = "";
         //return playlist name + number or songs + length
-        details = listName + " | " + getNumSongs() + " Songs | " + getFullLength();
+        details = listName + " | " + getNumSongs() + " Songs | " + getFullLength() + ".";
         return details;
     }
     public void updateCurrent(int songIndex){
@@ -110,7 +110,7 @@ public class Playlist
             minutes ++; //round up for loss of seconds
             return hours + " Hours, " + minutes + " Minutes." ;
         }
-        return minutes + " Minutes, " + seconds + " Seconds." ;
+        return minutes + " Minutes, " + seconds + " Seconds" ;
     }
 
     public void print()
@@ -148,6 +148,10 @@ public class Playlist
             return playlist.get(currentSongIndex +1).toString();
         }
         return("end of list");
+    }
+    public int getSize()
+    {
+        return playlist.size();
     }
 
     //start and restart
@@ -216,7 +220,7 @@ public class Playlist
         {
             if (playlist.get(i).getArtist().toLowerCase(Locale.ROOT).equals(artist.toLowerCase(Locale.ROOT)))
             {
-                System.out.println(playlist.get(i).toString() + " was removed from your playlist");
+                System.out.println(playlist.get(i).getArtist() + " - " + playlist.get(i).getName() +" was removed from your playlist");
                 playlist.remove(i);
                 i--;
             }
