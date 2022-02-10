@@ -66,7 +66,7 @@ public class Main {
         System.out.print("Nathan has one song in this playlist: ");
         System.out.println(playlist.findFromArtist("King Nathan").toString());
         System.out.println("There are " + playlist.getSize() + " songs in your playlist.");
-        System.out.println("Your playlist is " +  playlist.getFullLength() + "long.");
+        System.out.println("Your playlist is " +  playlist.getFullLength() + " long.");
         playlist.shuffle();
         playlist.sortByArtist();
         System.out.println("playlist sorted by artist name a-z: " + playlist.getPlaylist());
