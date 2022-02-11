@@ -25,21 +25,21 @@ public class Song
     public String getName()
     {
         return songName;
-    }
+    }//returns the song name
     public String getArtist()
     {
         return artist;
-    }
+    }//returns the name of the artist
     public String getGenre()
     {
         return genre;
-    }
+    }//returns the genre of the song
     public int getLength()
     {
         return length;
-    }
+    }//returns the length of the song in seconds
     
-    public String getFullTime()
+    public String getFullTime()//returns the time as a string in the format mintues:seconds
     {
         int minutes = length/60;
         int seconds = length%60;

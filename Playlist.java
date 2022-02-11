@@ -25,8 +25,8 @@ public class Playlist
     public void addSong(Song song)
     {
         playlist.add(song);
-    }
-    public void removeSong(String song)
+    }//adds a song to the playlist array list
+    public void removeSong(String song)//removes a song from the arraylist
     {
         for(int i = 0; i < playlist.size(); i++)
         {
@@ -131,7 +131,6 @@ public class Playlist
         if(currentSongIndex + 1 <= playlist.size())
         {
             updateCurrent(currentSongIndex +1);
-            nowPlaying();
         } else{ System.out.println("You are at the end of the playlist");}
     }
     public void prevSong()
@@ -139,7 +138,6 @@ public class Playlist
         if(currentSongIndex- 1 >= 0)
         {
             updateCurrent(currentSongIndex -1);
-            nowPlaying();
         }else{System.out.println("You are at the begining of the playlist");}
     }
     public void nowPlaying()

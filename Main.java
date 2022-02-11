@@ -73,6 +73,7 @@ public class Main {
         playlist.restart();
         System.out.println("the name of this playlist is" + playlist.getListName());
         playlist.updateCurrent(5);
+        playlist.prevSong();
         playlist.updateCurrent("Headlines");
         System.out.println("Testing Done :)");
     }
