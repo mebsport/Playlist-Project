@@ -7,6 +7,7 @@ public class Playlist
     private String listName;
     private Song currentSong;
     private int currentSongIndex =-1;
+    private boolean loop;
     
     public Playlist()
     {
@@ -134,10 +135,19 @@ public class Playlist
     //change current song
     public void nextSong()//go to next song
     {
-        if(currentSongIndex + 1 <= playlist.size())
+        if(!loop)//if the loop is off say that you are at the end of the playlist when you get to the end
         {
-            updateCurrent(currentSongIndex +1);
-        } else{ System.out.println("You are at the end of the playlist");}
+            if(currentSongIndex + 1 <= playlist.size())
+            {
+                updateCurrent(currentSongIndex +1);
+            } else{ System.out.println("You are at the end of the playlist");}
+        }else//if the loop setting is turned on restart the playlist when at the end
+        {
+            if(currentSongIndex + 1 > playlist.size())
+            {
+                restart();
+            }
+        }
     }
     public void prevSong()//go back
     {
@@ -220,6 +230,23 @@ public class Playlist
             }
         }
     }
+    public void sortByLength()
+    {
+        ArrayList<Integer> songLength = new ArrayList<Integer>();//list of ints for time of songs
+        for(Song song : playlist){
+            songLength.add(song.getLength());//gets the length of the song and adds it to the end
+        }
+        Collections.sort(songLength);//sorts in order of smallest to bigges
+        for(int i = 0; i < playlist.size(); i++)
+        {
+            if(playlist.get(i).getLength() != songLength.get(i))
+            {
+                playlist.add(playlist.get(i));
+                playlist.remove(i);
+                i--;
+            }
+        }
+    }
 
     //remove all by artist
     public void removeAllByArtist(String artist)
@@ -242,6 +269,73 @@ public class Playlist
     //return the name
     public String getListName(){
         return listName;
+    }
+
+    //print upcoming songs
+    public void printQueue()
+    {
+        System.out.println();
+        nowPlaying();
+        System.out.println("Up Next...");
+        if(!loop)//if loop is false go through starting at the current song and print the info about each song until the end of the list
+        {
+            for(int i = currentSongIndex + 1; i < playlist.size(); i++)
+            {
+                System.out.println(playlist.get(i).toString());
+            }
+        }else//if the loop is true, go through starting at the current song and print the info about each song until you get back to the current song
+        {
+            for(int i = currentSongIndex + 1; i < playlist.size(); i++)
+            {
+                System.out.println(playlist.get(i).toString());
+            }
+            for(int i = 0; i < currentSongIndex; i++)
+            {
+                System.out.println(playlist.get(i).toString());
+            }
+        }
+    }
+
+    //turn loop on or off
+    public void toggleLoop()
+    {
+        if(!loop)
+        {
+            System.out.println();
+            System.out.println("Your Playlist Will Loop Now");
+            loop = true;
+        }else if(loop)
+        {
+            System.out.println();
+            System.out.println("Your Playlist Will Not Loop Now");
+            loop = false;
+        }
+    }
+
+    //change name
+    public void changeName(String name)
+    {
+        listName = name;
+    }
+
+    //add all from one playlist to another
+    public void addList(Playlist list)
+    {
+        for(int i = 0; i < list.getPlaylist().size(); i++)//check for duplicates on each item
+        {
+            for(int j = 0; j < playlist.size(); j++)
+            {
+                if(playlist.get(j).getName().toLowerCase().equals(list.getPlaylist().get(i).getName().toLowerCase()))
+                {
+                    list.getPlaylist().remove(i);//if theres a duplicate remove from the list
+                    i--;
+                    break;//leaves loop to go back to outer one if match is found
+                }
+            }
+        }
+        for (Song song : list.getPlaylist()) {
+            playlist.add(song);//add all the songs from the list to the playlist
+        }
     }
 }
 

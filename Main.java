@@ -76,5 +76,27 @@ public class Main {
         playlist.prevSong();
         playlist.updateCurrent("Headlines");
         System.out.println("Testing Done :)");
+        playlist.sortByLength();
+        playlist.printQueue();
+        System.out.println();
+
+        Playlist list = new Playlist("DA BEST PLAYLIST");
+        list.addSong(new Song("Web Dev Anthem", "lil Looskie", 231, "Country"));
+        list.addSong(new Song("looskie loves peanut butter", "lil Looskie", 192, "Country"));
+        list.addSong(new Song("coding jam", "lil Looskie", 291, "Country"));
+        list.addSong(new Song("looskie the king", "lil Looskie", 271, "Country"));
+        list.addSong(new Song("nathans song", "KING NATHAN", 622, "Pop"));
+        list.addSong(new Song("Teacher Jams", "Mr. G", 321, "Pop"));
+        list.addSong(new Song("Rolling In Money", "Mar$", 281, "Classical"));
+        list.addSong(new Song("fornite in class", "looskie", 238, "Jazz"));
+        list.addSong(new Song("DeBop", "Lil Lumps", 120, "Country"));
+        list.addSong(new Song("father", "exercise miracle", 120, "Hip-Hop/Rap"));
+//        list.addSong(new Song("name", "artist", 309, "genre")); add new song template
+
+        playlist.toggleLoop();
+        playlist.printQueue();
+        playlist.addList(list);
+        playlist.changeName("CODING JAMS TO LISTEN TO WHILE CODING");
+        playlist.print();
     }
 }
