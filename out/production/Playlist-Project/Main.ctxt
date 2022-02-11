@@ -1,4 +1,5 @@
 #BlueJ class context
 comment0.target=Main
-comment0.text=\r\n\ Marcelus\ Brown\r\n\ 2/7/21\r\n
-numComments=1
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+numComments=2

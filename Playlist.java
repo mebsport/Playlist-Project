@@ -38,22 +38,24 @@ public class Playlist
             }
         }
     }
-    public void shuffle()
+    public void shuffle()//shuffles list
     {
         for(int i = 0; i < playlist.size(); i++)
         {
             int randomNum = (int) (Math.random() * playlist.size());
             Song current = playlist.get(i);
-            Song random = playlist.set(randomNum, current);
-            playlist.set(i, random);
+            Song swap = playlist.set(randomNum, current);
+            playlist.set(i, swap);
         }
     }
     public String toString(){
         String details = "";
-        //return playlist name + number or songs + length
+        //return playlist name + number of songs + length
         details = listName + " | " + getNumSongs() + " Songs | " + getFullLength() + ".";
         return details;
     }
+
+    //change the currently playing song
     public void updateCurrent(int songIndex){
         currentSong = playlist.get(songIndex);
         currentSongIndex = songIndex;
@@ -69,11 +71,14 @@ public class Playlist
             }
         }
     }
+
+    //get the info on the currently playing song
     public String getCurrentSongInfo()
     {
         return currentSong.toString();        
     }
 
+    //search for song from genre or artist and return it. return null if not found (may cause nullpointerexception if mispelled)
     public Song findFromGenre(String genre)
     {
         for (Song song : playlist) {
@@ -92,12 +97,13 @@ public class Playlist
         }
         return null;
     }
-    public int getNumSongs()
+
+    public int getNumSongs()    //get the number of songs in the playlist
     {
         playlist.trimToSize();
         return playlist.size();
     }
-    public int getLength()
+    public int getLength()//get the length of the playlist in seconds
     {
         int time = 0;
         for (Song song : playlist) {
@@ -105,7 +111,7 @@ public class Playlist
         }
         return time;
     }
-    public String getFullLength()
+    public String getFullLength()//get the length as a string
     {
         int minutes = getLength()/60;
         int seconds = getLength()%60;
@@ -119,33 +125,33 @@ public class Playlist
         return minutes + " Minutes, " + seconds + " Seconds" ;
     }
 
-    public void print()
+    public void print()//print out the playlist
     {
         System.out.println("Songs in " + listName + ":");
         System.out.println(playlist);
     }
 
     //change current song
-    public void nextSong()
+    public void nextSong()//go to next song
     {
         if(currentSongIndex + 1 <= playlist.size())
         {
             updateCurrent(currentSongIndex +1);
         } else{ System.out.println("You are at the end of the playlist");}
     }
-    public void prevSong()
+    public void prevSong()//go back
     {
         if(currentSongIndex- 1 >= 0)
         {
             updateCurrent(currentSongIndex -1);
         }else{System.out.println("You are at the begining of the playlist");}
     }
-    public void nowPlaying()
+    public void nowPlaying()//print out the info on what song is playing
     {
         System.out.print("Now Playing: ");
         System.out.println(getCurrentSongInfo());
     }
-    public String getNextSongInfo()
+    public String getNextSongInfo()//get info on what song is up next
     {
         if(currentSongIndex + 1 > playlist.size())
         {
@@ -153,7 +159,7 @@ public class Playlist
         }
         return("end of list");
     }
-    public int getSize()
+    public int getSize()//get the amount of songs in the playlist
     {
         return playlist.size();
     }
@@ -174,7 +180,7 @@ public class Playlist
     }
 
     //sorting
-    public void sort()
+    public void sort()//sort alphabetically
     {
         ArrayList<String> songNames = new ArrayList<String>();//list of strings for name of songs
 
@@ -194,7 +200,7 @@ public class Playlist
             }
         }
     }
-    public void sortByArtist()
+    public void sortByArtist()//sort alphabetically by artist
     {
         ArrayList<String> songArtists = new ArrayList<String>();//list of strings for name of songs
 
@@ -229,20 +235,13 @@ public class Playlist
         }
     }
 
+    //return the arraylist
     public ArrayList<Song> getPlaylist() {
         return playlist;
     }
+    //return the name
     public String getListName(){
         return listName;
     }
-
-//    public void playSongByIndex(int index){
-//        updateCurrent(index);
-//        nowPlaying();
-//    }
-//    public void playSong(String song)
-//    {
-//
-//    }
 }
 
