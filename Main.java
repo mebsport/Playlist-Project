@@ -71,7 +71,7 @@ public class Main {
         playlist.sortByArtist();
         System.out.println("playlist sorted by artist name a-z: " + playlist.getPlaylist());
         playlist.restart();
-        System.out.println("the name of this playlist is" + playlist.getListName());
+        System.out.println("the name of this playlist is " + playlist.getListName());
         playlist.updateCurrent(5);
         playlist.prevSong();
         playlist.updateCurrent("Headlines");
